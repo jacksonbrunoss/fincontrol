@@ -14,3 +14,11 @@
 .form-control {
     border-radius: 0px !important;
 }
+
+.btn-primary {
+    background-color: $featured;
+    border-color: $featured-dark;
+    &:hover {
+        background-color: $featured-dark;
+    }
+}

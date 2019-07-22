@@ -39,7 +39,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $dark-medium;
-  color: $featured;
+  background-color: var(--dark-medium);
+  color: var(--featured);
 }
 </style>
