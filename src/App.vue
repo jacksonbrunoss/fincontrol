@@ -13,9 +13,6 @@ export default {
   },
   methods: {
 
-  },
-  mounted () {
-    console.log(this.$firebase)
   }
 }
 </script>
