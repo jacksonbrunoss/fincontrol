@@ -23,7 +23,15 @@
             v-model="password"
           />
         </div>
-        <button class="btn btn-primary w-100">Entrar</button>
+        <button class="btn btn-primary w-100" :disabled="loading">
+          <template v-if="loading">
+            <i class="fa fa-spinner fa-spin"></i>
+          </template>
+          <template v-else>
+            Entrar
+            <i class="fa fa-sign-in-alt"></i>
+          </template>
+        </button>
       </div>
     </div>
   </form>
@@ -34,21 +42,32 @@ export default {
   name: "Login",
   data() {
     return {
-      email: '',
-      password: ''
+      loading: false,
+      email: 'jackson@fincontrol.com.br',
+      password: '123123'
     }
   },
   methods: {
     async doLogin() {
+      this.loading = true
       const { email, password } = this
       try {
         const res = await this.$firebase.auth().signInWithEmailAndPassword(email, password)
-        console.log(res)
+        window.uid = res.user.uid
+        this.$router.push({ name: 'home'})
       }
       catch(err) {
         console.log(err)
       }
+      this.loading = false
     }
+  },
+  beforeRouterEnter(to, from, next) {
+    next(vm => {
+      if(window.uid) {
+        vm.$router.push({ name: 'home' })
+      }
+    })
   }
 }
 </script>
