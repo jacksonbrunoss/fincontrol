@@ -11,17 +11,32 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
+      meta: {
+        icon: 'home', title: 'Home'
+      },
       component: () => import(/* webpackChunkName: "home" */ './pages/home/Home')
+    },
+    {
+      path: '/lista-gastos',
+      name: 'lista-gastos',
+      meta: {
+        icon: 'list-ul', title: 'Lista Gastos'
+      },
+      component: () => import(
+        /* webpackChunkName: "lista-gastos" */ './pages/lista-gastos/ListaGastos'
+      )
     },
     {
       path: '/login',
       name: 'login',
+      meta: { title: 'Login' },
       component: () => import(/* webpackChunkName: "home" */ './pages/login/Login')
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
+  document.title = `${to.meta.title} - Fincontrol`
   if (!window.uid && to.name !== 'login') {
     next({ name: 'login' })
   } else {
