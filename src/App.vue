@@ -18,7 +18,7 @@
 </template>
 <script>
 import BaseSpinner from '@/components/global/BaseSpinner.vue'
-import LayoutNavigation from '@/components/layout/layoutNavigation.vue'
+import LayoutNavigation from '@/components/layout/LayoutNavigation.vue'
 export default {
   name: "App",
   data: () => ({ isLogged: false }),
